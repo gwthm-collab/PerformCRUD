@@ -1,0 +1,112 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/app")
+}
+
+<div class="page-header">
+    <h1>Student Service</h1>
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Students</h2>
+            </div>
+            <div class="panel-body">
+                <ul class="list-unstyled" data-bind="foreach: studentLists">
+                    <li>
+                        <strong>Name: <span data-bind="text: Name"></span></strong>, Age <span data-bind="text: Age"></span>
+                        <small><a href="#" data-bind="click: $parent.getStudentDetail">Details</a></small>
+                        <small><a href="#" data-bind="click: $parent.deleteStudentDetail">Delete</a></small>
+                        <small><a href="#" data-bind="click: $parent.updateStudentDetail">Update</a></small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+    </div>
+
+    <!-- ko if:detail() -->
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Detail</h2>
+            </div>
+            <table class="table">
+                <tr><td>Name</td><td data-bind="text: detail().Name"></td></tr>
+                <tr><td>Age</td><td data-bind="text: detail().Age"></td></tr>
+                <tr><td>Grade</td><td data-bind="text: detail().Grade"></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- /ko -->
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Add Student</h2>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal" data-bind="submit: addStudent">
+
+                    <div class="form-group" data-bind="with: newStudent">
+                        <label for="inputName" class="col-sm-4 control-label">Full Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName" data-bind="value:Name" />
+                        </div>
+                        <br />
+                        <label for="inputAge" class="col-sm-4 control-label">Age</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="inputAge" data-bind="value:Age" />
+                        </div>
+                        <br />
+                        <label for="inputGrade" class="col-sm-4 control-label">Grade</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputGrade" data-bind="value:Grade" />
+                        </div>
+
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Update Student</h2>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal" data-bind="submit: updateStudent">
+
+                    <div class="form-group" data-bind="with: existingStudent">
+                        <input type="text" class="form-control" id="updateId" data-bind="textInput:Id" disabled/>
+                        <label for="updateName" class="col-sm-4 control-label">Full Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="updateName" data-bind="textInput:Name" />
+                        </div>
+                        <br />
+                        <label for="updateAge" class="col-sm-4 control-label">Age</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="updateAge" data-bind="textInput:Age" />
+                        </div>
+                        <br />
+                        <label for="updateGrade" class="col-sm-4 control-label">Grade</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="updateGrade" data-bind="textInput:Grade" />
+                        </div>
+
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
